@@ -27,7 +27,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Request Type</label>
-                                        <ng-select [allowClear]="false"  [items]="appRequestTypes"
+                                        <ng-select  [allowClear]="true"  [items]="reqNames"
                                                     [disabled]="requestTypeDisabled"
                                                     (data)="refreshRequestType($event)"
                                                     (selected)="selectedRequestType($event)"
@@ -38,30 +38,19 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Subject</label>
-                                        <input type="text" name="loan" class="form-control" placeholder="Brief Subject of the issue" [(ngModel)]="ticket.loanNo">
+                          
+                          <!-- <form name="myForm" class="form-horizontal" role="form" ng-submit="submitForm()"> -->
+                              <div *ngFor="let fieldname of params" class="row" >
+                                  <div class="form-group">
+                                    <label class="col-sm-2 control-label">{{fieldname}}</label>
+                                    <div class="col-sm-6">
+                                      <input type="text" dynamic-name="fieldname" id="{{fieldname}}" data-ng-model="field.data"  class="form-control" required/>
+                                      <!--<span ng-show="myForm.{{field.name}}.$dirty && myForm.{{field.name}}.$error.required">Required!</span>.-->
+                                      <!-- <span  data-ng-show=" {{'form.'+field.name+'.$dirty && form.'+field.name+'.$error.required'}}">Required!</span> -->
                                     </div>
+                                  </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Loan #</label>
-                                        <input type="text" name="loan" class="form-control" placeholder="Loan No." [(ngModel)]="ticket.loanNo">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Case No.</label>
-                                        <input type="text"  class="form-control" name="case" placeholder="Case No." [(ngModel)]="ticket.caseNo">
-                                    </div>
-                                </div>
-                            </div>
+
 
                             <div class="row">
                                 <div class="col-md-12">
@@ -71,7 +60,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-info btn-fill pull-right" (click)="checkTicketInfo()">Submit</button>
+                            <button type="submit" class="btn btn-info btn-fill pull-right" (click)="submitTicketInfo()">Submit</button>
                             <div class="clearfix"></div>
                         </form>
                     </div>
