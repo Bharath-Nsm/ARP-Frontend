@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
-    styleUrls: [],
+    styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
 
@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
     }
 
     onSubmitLogin() {
-     this.router.navigate(['/request']);   
+     this.router.navigate(['/request']);
     }
 
 }

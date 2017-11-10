@@ -18,9 +18,11 @@ export class HomeComponent implements OnInit {
 
 public apps:Array<Application> = [{ name:'Corp Applications - Encompass', requestTypes:['CD - Page 5', 'XML - Fatal Error', 'Econsent date missing']},
  {name:'Servicing - Remedy',requestTypes:['Force Lock', 'Eval Mod']}, {name:'Imaging Support',requestTypes:['Medical Documents']}, {name:'Servicing - iAssist',requestTypes:['none']}];
- 
-public appNames = this.apps.map((a:Application) => {return a.name;});
+
+//public appNames = this.apps.map((a:Application) => {return a.name;});
 public appRequestTypes: Array<string> = [];
+public appNames=[]
+public selected_val=''
 
   private appName:string;
   private appNameValue:any = {};
@@ -28,7 +30,7 @@ public appRequestTypes: Array<string> = [];
   private appNameDisabled:boolean = false;
 
   private requestType:string;
-  private requestTypeValue:any = {};  
+  private requestTypeValue:any = {};
   private requestTypeDisabled:boolean = true;
 
   private _httpClient;
@@ -37,52 +39,56 @@ public appRequestTypes: Array<string> = [];
   constructor(http: Http) { this._httpClient = http; }
 
   ngOnInit() {
-
-    // TODO - Fetch
-    // The below example is for your reference. Rewrite the logic for both "App Name" and "Request Type" 
-    /*this._httpClient.get('https://jsonplaceholder.typicode.com/posts')
+    //API call statement - Initial Application Names
+    this._httpClient.get('http://10.79.8.122:8082/arp/index')
         .map(res => res.json())
         .subscribe(posts => {
-          this.posts = posts;
-          console.log(this.posts.length);
-          });*/
-
+          this.appNames = posts;
+       });
     }
 
  public selectedAppName(value:any):void {
-    console.log('Selected value is: ', value);
-    if(value.text) {
-      this.requestTypeDisabled = false;
-      this.appRequestTypes = this.apps.filter((a:Application) => a.name==value.text)[0].requestTypes;
-    } else {
-      this.requestTypeDisabled = true;
-    }
+
+   //API call statement - Request Types
+    this.selected_val=value.text.toString();
+    this._httpClient.get('http://10.79.8.122:8082/arp/extract/requestType/'+this.selected_val)
+        .map(res => res.json())
+        .subscribe(posts => {
+          this.appRequestTypes=posts;
+          if(value.text) {
+            this.requestTypeDisabled = false;
+            this.appRequestTypes = posts
+          } else {
+            this.requestTypeDisabled = true;
+          }
+       });
+
    //console.log(this.apps.filter((a:Application) => a.name==value.text)[0].requestTypes);
   }
- 
+
   public removedAppName(value:any):void {
     console.log('Removed value is: ', value);
     this.appRequestTypes = [];
     this.requestTypeDisabled = true;
   }
- 
+
   public typedAppName(value:any):void {
   }
- 
+
   public refreshAppName(value:any):void {
     this.appNameValue = value;
-  }   
+  }
 
 
   public selectedRequestType(value:any):void {
   }
- 
+
   public removedRequestType(value:any):void {
   }
- 
+
   public typedRequestType(value:any):void {
   }
- 
+
   public refreshRequestType(value:any):void {
     this.requestTypeValue = value;
   }

@@ -1,10 +1,10 @@
 $topnav-background-color: #222;
 :host {
-    display: block;
+    display: inline;
+}
+.container{
 }
 .login-page {
-    position: absolute;
-    top: 0;
     left: 0;
     right: 0;
     bottom: 0;
@@ -12,13 +12,11 @@ $topnav-background-color: #222;
     background: $topnav-background-color;
     text-align: center;
     color: #fff;
-    padding: 3em;
+    padding: 0em;
     .col-lg-4{
         padding :0;
     }
     .input-lg {
-        height: 46px;
-        padding: 10px 16px;
         font-size: 18px;
         line-height: 1.3333333;
         border-radius: 0;
