@@ -4,10 +4,10 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="header">
-                        <h4 class="title">Request</h4>
+                        <h4 class="title">Create a Request</h4>
                     </div>
                     <div class="content">
-                        <form>
+                        <form #requestProcessing="ngForm">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
@@ -27,7 +27,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Request Type</label>
-                                        <ng-select  [allowClear]="true"  [items]="appRequestTypes"
+                                        <ng-select [allowClear]="false"  [items]="appRequestTypes"
                                                     [disabled]="requestTypeDisabled"
                                                     (data)="refreshRequestType($event)"
                                                     (selected)="selectedRequestType($event)"
@@ -38,8 +38,14 @@
                                     </div>
                                 </div>
                             </div>
-
-
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Subject</label>
+                                        <input type="text" name="loan" class="form-control" placeholder="Brief Subject of the issue" [(ngModel)]="ticket.loanNo">
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -56,6 +62,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">

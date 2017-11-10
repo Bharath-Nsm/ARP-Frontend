@@ -16,6 +16,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { TicketComponent } from './ticket/ticket.component';
 import { LoginComponent } from './login/login.component';
+import { ChatComponent } from './chat/chat.component';
 
 import { AuthGuard } from './shared/guard/auth.guard';
 
@@ -23,7 +24,8 @@ import { AuthGuard } from './shared/guard/auth.guard';
   declarations: [
     AppComponent,
     HomeComponent,
-    TicketComponent
+    TicketComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +43,3 @@ import { AuthGuard } from './shared/guard/auth.guard';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-
-
-

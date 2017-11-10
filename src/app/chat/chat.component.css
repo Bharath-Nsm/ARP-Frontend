@@ -1,0 +1,13 @@
+.scroll-area{
+  width:100%;
+  height:calc(100% - 200px);
+  margin-top:10px;
+  background-color:#B2EBF2;
+  float:left;
+  overflow-y:scroll;
+}
+
+.form-control{
+  margin-top: 20px;
+  margin-left: 820px;
+}

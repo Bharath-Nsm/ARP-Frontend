@@ -47,23 +47,26 @@ public selected_val=''
        });
     }
 
+public request_types_api(selected_val){
+  this._httpClient.get('http://10.79.8.122:8082/arp/extract/requestType/'+selected_val)
+      .map(res => res.json())
+      .subscribe(posts => {
+        this.appRequestTypes=posts;
+        if(selected_val) {
+          this.requestTypeDisabled = false;
+          this.appRequestTypes = posts
+          this.appRequestTypes.push('Others')
+        } else {
+          this.requestTypeDisabled = true;
+        }
+     });
+}
+
  public selectedAppName(value:any):void {
 
    //API call statement - Request Types
     this.selected_val=value.text.toString();
-    this._httpClient.get('http://10.79.8.122:8082/arp/extract/requestType/'+this.selected_val)
-        .map(res => res.json())
-        .subscribe(posts => {
-          this.appRequestTypes=posts;
-          if(value.text) {
-            this.requestTypeDisabled = false;
-            this.appRequestTypes = posts
-          } else {
-            this.requestTypeDisabled = true;
-          }
-       });
-
-   //console.log(this.apps.filter((a:Application) => a.name==value.text)[0].requestTypes);
+    this.request_types_api(this.selected_val); //console.log(this.apps.filter((a:Application) => a.name==value.text)[0].requestTypes);
   }
 
   public removedAppName(value:any):void {
